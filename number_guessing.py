@@ -2,15 +2,15 @@ import random
 
 class NumberGuessingGame:
     def __init__(self):
-        self.secret_number = random.randint(0, 999)
+        self.random_number = random.randint(0, 999)
         self.max_attempts = 5
         self.attempts = 0
 
     def check_guess(self, guess):
         self.attempts += 1
-        if guess == self.secret_number:
+        if guess == self.random_number:
             return "Congratulations! You guessed the correct number in {} attempts!\n".format(self.attempts)
-        elif guess < self.secret_number:
+        elif guess < self.random_number:
             return "Wrong guess! The number is greater than {}\n".format(guess)
         else:
             return "Wrong guess! The number is smaller than {}\n".format(guess)
@@ -44,17 +44,17 @@ def main():
     game = NumberGuessingGame()
 
     while game.attempts < game.max_attempts:
-        ui.display_message("Attempt: {}".format(game.attempts + 1))
-        guess = ui.get_guess()
+        ui.display_message("You have {} Attempts : ".format(game.attempts + 1))
+        guess_number  = ui.get_guess()
 
-        if guess is not None:
-            result = game.check_guess(guess)
+        if guess_number != None:
+            result = game.check_guess(guess_number)
             ui.display_message(result)
 
             if "Congratulations!" in result:
                 return
 
-    ui.display_game_over(game.secret_number)
+    ui.display_game_over(game.random_number)
 
 if __name__ == "__main__":
     main()
